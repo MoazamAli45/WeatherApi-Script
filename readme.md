@@ -13,13 +13,26 @@ This Python project fetches current weather data (temperature) for a list of cit
 
 ## Project Structure
 
-├── config.py           # Configuration and API key validation
-├── weather_api.py      # WeatherAPI interaction and data storage
-├── main.py             # Scheduling and main program logic
-├── cities.xlsx         # Input Excel file with city names
-├── .env                # Environment variables (API key)
-├── .gitignore          # Git ignore rules
-└── README.md           # Project documentation
+- `config.py`  
+  Configuration and API key validation
+
+- `weather_api.py`  
+  WeatherAPI interaction and data storage
+
+- `main.py`  
+  Scheduling and main program logic
+
+- `cities.xlsx`  
+  Input Excel file with city names
+
+- `.env`  
+  Environment variables (API key)
+
+- `.gitignore`  
+  Git ignore rules
+
+- `README.md`  
+  Project documentation
 
 
 ## Prerequisites
