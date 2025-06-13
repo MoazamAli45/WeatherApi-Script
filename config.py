@@ -1,8 +1,16 @@
 import re
 from typing import List
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Configuration
-API_KEY = "a5a004fba0c5464fa7a124259251306"  
+API_KEY = os.getenv("WEATHER_API_KEY")
+if not API_KEY:
+    raise ValueError("WEATHER_API_KEY not found in environment variables")
+
 WEATHER_API_URL = "http://api.weatherapi.com/v1/current.json"
 EXCEL_FILE = "weather_data.xlsx"
 INPUT_FILE = "cities.xlsx"
