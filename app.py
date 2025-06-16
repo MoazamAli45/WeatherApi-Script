@@ -1,6 +1,8 @@
 import requests
 import logging
+import time
 from fastapi import FastAPI, HTTPException
+from asyncio import gather
 from database import Database
 from config import API_KEY, WEATHER_API_URL, validate_api_key
 from datetime import datetime
@@ -19,7 +21,7 @@ if not validate_api_key(API_KEY): # type: ignore
     raise ValueError("Invalid API key")
 
 def fetch_weather_data(city: str) -> Dict:
-    """Fetch weather data for a single city from WeatherAPI."""
+    """Fetch weather data for a single city from WeatherAPI with a simulated delay."""
     params = {'key': API_KEY, 'q': city, 'aqi': 'no'}
     try:
         response = requests.get(WEATHER_API_URL, params=params, timeout=10)
@@ -28,6 +30,8 @@ def fetch_weather_data(city: str) -> Dict:
         if 'error' in data:
             logger.error(f"API error for {city}: {data['error']['message']}")
             raise HTTPException(status_code=400, detail=data['error']['message'])
+        # Simulate a 2-second delay
+        time.sleep(2)
         weather_info = {
             'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'city': city,
@@ -48,12 +52,6 @@ def fetch_weather_data(city: str) -> Dict:
     except Exception as e:
         logger.error(f"Error fetching weather for {city}: {str(e)}")
         raise HTTPException(status_code=500, detail="Server error")
-
-@app.get("/")
-async def root():
-    """Root endpoint to check if the API is running."""
-    return {"message": "Weather API is running"}
-
 
 @app.get("/weather")
 async def get_weather():
