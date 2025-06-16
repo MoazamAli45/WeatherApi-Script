@@ -30,7 +30,7 @@ class WeatherScheduler:
             weather_data = list(executor.map(self.weather_api.fetch_weather_data, cities))
         
         if weather_data:
-            self.weather_api.append_to_excel(weather_data)
+            self.weather_api.append_to_database(weather_data)
             logger.info(f"Completed weather data fetch for {len(cities)} cities")
 
     def start(self):

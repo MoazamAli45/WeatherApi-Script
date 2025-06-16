@@ -1,5 +1,4 @@
 import re
-from typing import List
 from dotenv import load_dotenv
 import os
 
@@ -13,8 +12,7 @@ if not API_KEY:
     raise ValueError("WEATHER_API_KEY not found in environment variables")
 
 WEATHER_API_URL = "http://api.weatherapi.com/v1/current.json"
-EXCEL_FILE = "weather_data.xlsx"
-INPUT_FILE = "cities.xlsx"
+DATABASE_FILE = "weather.db"  # Updated to match the file you're using in DB4S
 UPDATE_INTERVAL = 1  # minutes (change to 15 for production)
 
 def validate_api_key(api_key: str) -> bool:
