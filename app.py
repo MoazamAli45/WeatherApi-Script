@@ -30,8 +30,9 @@ def fetch_weather_data(city: str) -> Dict:
         if 'error' in data:
             logger.error(f"API error for {city}: {data['error']['message']}")
             raise HTTPException(status_code=400, detail=data['error']['message'])
+        #  FOR TESTING PURPOSES ONLY
         # Simulate a 2-second delay
-        time.sleep(2)
+        # time.sleep(2)
         weather_info = {
             'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'city': city,
@@ -52,6 +53,8 @@ def fetch_weather_data(city: str) -> Dict:
     except Exception as e:
         logger.error(f"Error fetching weather for {city}: {str(e)}")
         raise HTTPException(status_code=500, detail="Server error")
+
+
 
 @app.get("/weather")
 async def get_weather():
