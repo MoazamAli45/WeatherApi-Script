@@ -1,0 +1,4 @@
+python -m venv 
+envenv\Scripts\activate
+uvicorn app:app --reload 
+docker compose up --build

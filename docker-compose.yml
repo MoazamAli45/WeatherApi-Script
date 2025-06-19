@@ -20,7 +20,8 @@ services:
     build: .
     command: python main.py
     depends_on:
-      - weather-api
+      weather-api:
+        condition: service_healthy
     volumes:
       - ./:/app
     env_file:
