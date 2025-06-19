@@ -1,28 +1,17 @@
 version: "3.8"
 services:
   weather-api:
-    build: .
-    command: uvicorn app:app --reload --host 0.0.0.0 --port 8000
+    image: moazamali4567/weather-app-api:v1
     ports:
       - "8000:8000"
     volumes:
-      - ./:/app
       - ./weather.db:/app/weather.db
     env_file:
       - .env
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/weather"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   weather-client:
-    build: .
+    image: moazamali4567/weather-app-client:v1
     command: python main.py
     depends_on:
-      weather-api:
-        condition: service_healthy
-    volumes:
-      - ./:/app
+      - weather-api
     env_file:
       - .env
