@@ -23,7 +23,7 @@ if not validate_api_key(API_KEY): # type: ignore
 @app.get("/")
 async def root():
     """Root endpoint to check if the API is running."""
-    return {"message": "Weather API is running"}
+    return {"message": "Weather API is running in docker dekstop Working"}
 
 def fetch_weather_data(city: str) -> Dict:
     """Fetch weather data for a single city from WeatherAPI with a simulated delay."""
