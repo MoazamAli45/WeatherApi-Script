@@ -8,8 +8,10 @@ from config import UPDATE_INTERVAL
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-API_URL = "http://127.0.0.1:8000/weather"  # Local FastAPI server
+# API_URL = "http://127.0.0.1:8000/weather"  # Local FastAPI server
 
+#   DOCKERIZE API URL
+API_URL = "http://weather-api:8000/weather" 
 def update_weather():
     """Fetch weather data from FastAPI endpoint."""
     logger.info("Running update_weather job")
