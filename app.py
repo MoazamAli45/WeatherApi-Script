@@ -20,6 +20,11 @@ if not validate_api_key(API_KEY): # type: ignore
     logger.error("Invalid API key provided")
     raise ValueError("Invalid API key")
 
+@app.get("/")
+async def root():
+    """Root endpoint to check if the API is running."""
+    return {"message": "Weather API is running"}
+
 def fetch_weather_data(city: str) -> Dict:
     """Fetch weather data for a single city from WeatherAPI with a simulated delay."""
     params = {'key': API_KEY, 'q': city, 'aqi': 'no'}
